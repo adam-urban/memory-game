@@ -11,14 +11,14 @@ public class Field{
             this.word = word; 
             this.cover = true;
         }
-        
+
     /* Methods */
     public String getWord() { return word; }
     public void setWord(String word) { this.word = word; }
     public boolean isCover() { return cover; }
     public void setCover() { this.cover = true; }
     public void setUnCover() {this.cover = false; }
-
+    public int length() {return this.toString().length();}
     @Override
     public String toString() {
         return this.isCover()? coverSign : word; 
