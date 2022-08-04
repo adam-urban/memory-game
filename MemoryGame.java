@@ -21,12 +21,13 @@ public class MemoryGame {
             while(fReader.hasNextLine()){
                 listOfWords.add(fReader.nextLine());
             }
+            fReader.close();
             
         } catch (Exception e) {
             System.out.println("Brak pliku Words.txt");
             waitForEnter();
             System.exit(0);
-        } 
+        }
         
         this.difficulty = DIFFICULTY.difficulty;
         this.chances = DIFFICULTY.chances;
@@ -106,11 +107,10 @@ public class MemoryGame {
             try {
                 while(!valid){
                     scan = new Scanner(System.in);
-                    input = scan.nextLine();
-                    input = input.toUpperCase();
-                    scan = new Scanner(input);
-                    input = scan.next("[AB]\\d");
-                    int y = ((int) input.charAt(1) - (int)'1');
+                    if(!scan.hasNext("([ab]|[AB])\\d")) throw new Exception();
+                    input = scan.nextLine().toUpperCase();
+
+                    int y = getY(input);
         
                     if(y<0 || y>this.matrix.getColumns()) throw new Exception();
 
@@ -124,9 +124,6 @@ public class MemoryGame {
             }catch (Exception e) {
                 input = "";
                 valid = true;
-            }
-            finally{
-                scan.close();
             }
         return input;
                     
@@ -201,9 +198,5 @@ public class MemoryGame {
     }
 
     public static void main(String[] args) {
-        String[] s = {"abc", "cv", "sbbb", "rew"};
-        MemoryGame m = new MemoryGame(Difficulty.EASY);
-        System.out.println("\033[H\033[2J");
-        m.play();
     }
 }
