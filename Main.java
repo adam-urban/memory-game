@@ -9,6 +9,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         while(!scan.hasNext("[12]")){
             System.out.println("Wrong input. Choose again");
+            scan.nextLine();
         }
 
         int i = scan.nextInt();
@@ -19,6 +20,8 @@ public class Main {
         MemoryGame m = new MemoryGame(difficulty);
 
         m.play();
+
+        scan.close();
     }
     
 }
