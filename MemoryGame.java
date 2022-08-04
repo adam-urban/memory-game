@@ -47,16 +47,18 @@ public class MemoryGame {
 
     /* Methods */
     public void play(){
-        String[] coordinates = new String[2];
+        String[] coordinates = new String[2];      // Stores coordinates of one turn ( to moves)
+        
         while(!end && chances>0){
-
-            for(int i=0; i<2; i++){
-                String count = i==0? "first" : "second";
+            /* two moves in for loop*/
+            for(int i=0; i<2; i++){                                                 
                 printMenu();
-                System.out.println("Choose " + count + " coordinates eg.A1: ");
+                String move = i==0? "first" : "second";
+                System.out.println("Choose " + move + " coordinates eg.A1: ");
                 
                 coordinates[i] = PlayerMove();
 
+                /* if fail to make coordinates break for loop */
                 if(coordinates[i].isEmpty()){
                     System.out.println("Invalid move. You are loosing one chance");
                     waitForEnter();
@@ -67,13 +69,17 @@ public class MemoryGame {
                 setUnCover(coordinates[i]);
 
             }
+            
+            /* If coordninates are invalid continue */
             if(coordinates[0].isEmpty()) continue;
             if(coordinates[1].isEmpty()){
-                setCover(coordinates[0]);
+                setCover(coordinates[0]);   // if the second coorinates are empty, cover the first word
                 continue;
             }
-            printMenu();
 
+            printMenu();
+            
+            /* If words don't match cover then */
             if(!this.getWord(coordinates[0]).equals(this.getWord(coordinates[1]))){
                 waitForEnter();
                 for(int i=0; i<2; i++){
@@ -81,9 +87,9 @@ public class MemoryGame {
                 }
             }
 
+            /* If win prompt */
             if(matrix.isMatrixUnCover()){
                 end = true;
-                printMenu();
                 System.out.println("Congratulation! You won!");
             }
 
@@ -92,6 +98,7 @@ public class MemoryGame {
 
         }
         
+        /* If lose prompt */
         if(chances <= 0 && !end){
             end = true;
             clearConsole();
@@ -101,22 +108,23 @@ public class MemoryGame {
         
 
     }
-
+    
+    /* return String Coordinates of the word in the matrix if making coordinates fails return empty String */
     public String PlayerMove(){
         Scanner scan = new Scanner(System.in);
-        String input = "";
+        String coordinates = "";
         boolean valid = false;
             try {
                 while(!valid){
                     scan = new Scanner(System.in);
                     if(!scan.hasNext("([ab]|[AB])\\d")) throw new Exception();
-                    input = scan.nextLine().toUpperCase();
+                    coordinates = scan.nextLine().toUpperCase();
 
-                    int y = getY(input);
+                    int y = getY(coordinates);
         
                     if(y<0 || y>this.matrix.getColumns()) throw new Exception();
 
-                    if(!isCover(input)){
+                    if(!isCover(coordinates)){
                         System.out.println("You choose uncover word! Choose again");
                         continue;
                     }
@@ -124,10 +132,10 @@ public class MemoryGame {
                 }
     
             }catch (Exception e) {
-                input = "";
+                coordinates = ""; 
                 valid = true;
             }
-        return input;
+        return coordinates;
                     
     }
     
