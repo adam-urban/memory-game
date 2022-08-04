@@ -25,14 +25,6 @@ public class Field{
     }
 
     public static void main(String[] args) {
-        Field f = new Field("word");
-        System.out.println(f);
-        f.setUnCover();
-        System.out.println(f);
-        f.setWord("inny");
-        System.out.println(f);
-        f.setCover();
-        System.out.println(f);
     }
 
 

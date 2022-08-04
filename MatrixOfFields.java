@@ -63,7 +63,7 @@ public class MatrixOfFields {
         }
     }
 
-    public int getSizeOfColumn(int number){
+    public int getSizeOfColumn(int number){                         
         if(matrix[0][number].length()>matrix[1][number].length())
             return matrix[0][number].length();
         else
@@ -115,12 +115,6 @@ public class MatrixOfFields {
     }
 
     public static void main(String[] args) {
-        String[] tab = {"abc", "cde", "xfc", "xcvd"};
-        MatrixOfFields b = new MatrixOfFields(tab);
-        b.setUnCover(0, 0);
-        
-        b.setUnCover(1, 2);
-        System.out.println(b);
     }
 
 }
