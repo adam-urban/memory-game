@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
+
 public class MemoryGame {
     /* Attributes */
     private int chances;
@@ -43,6 +44,7 @@ public class MemoryGame {
         }
         matrix = new MatrixOfFields(words);
     }
+
     /* Methods */
     public void play(){
         String[] coordinates = new String[2];
@@ -154,6 +156,7 @@ public class MemoryGame {
     public int getX(String coordinates){
         return (int)coordinates.charAt(0) - (int)'A';
     }
+    
     public int getY(String coordinates){
         return (int)coordinates.charAt(1) - (int)'1';
     }
@@ -166,6 +169,7 @@ public class MemoryGame {
     }
 
     public String getDifficulty(){ return "Level: " + this.difficulty;}
+    
     public String getChances(){ return "Chances: " + this.chances;}
 
     public String output(){
@@ -197,6 +201,5 @@ public class MemoryGame {
         s.nextLine();
     }
 
-    public static void main(String[] args) {
-    }
+
 }

@@ -1,4 +1,5 @@
 import java.util.Random;
+
 public class MatrixOfFields {
     /* Attributes */
     private int rows;
@@ -103,6 +104,7 @@ public class MatrixOfFields {
     }
 
     public int getColumns(){return this.columns;}
+    
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
@@ -114,7 +116,5 @@ public class MatrixOfFields {
 
     }
 
-    public static void main(String[] args) {
-    }
 
 }
